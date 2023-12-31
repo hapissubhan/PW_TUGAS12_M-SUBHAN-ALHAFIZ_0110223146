@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>praktikum 12</title>
+    <script>
+        function image_picker(){
+            const list_gambar = ["hiu.jpeg", "paus orca.jpeg", "paus.jpeg"];
+            let pilihan = document.getElementById("option").value;
+
+            if( pilihan == "hiu" ){
+                let select = list_gambar[0];
+                document.getElementById("gambar").src = `image/${select}`;
+            }
+
+            if( pilihan === "paus orca"){
+                let select = list_gambar[1];
+                document.getElementById("gambar").src = 'image/' + select;
+            }
+
+            if( pilihan === "paus"){
+                let select = list_gambar[2];
+                document.getElementById("gambar").src = `image/${select}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Image Picker</h1>
+
+    <select name="" id="option" onchange="image_picker()">
+        <option value="hiu">Hiu</option>
+        <option value="paus orca">Paus Orca</option>
+        <option value="paus">Paus</option>
+    </select>
+
+    <div class="container">
+        <img id="gambar">
+    </div>
+</body>
+</html>

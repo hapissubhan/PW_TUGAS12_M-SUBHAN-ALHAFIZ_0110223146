@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validasi formulir</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4 text-center mb-3">Validasi formulir</h1>
+        <form action="" onsubmit="return validateForm(event)">
+            <div class="row col-md-12">
+                <div class="col-md-6 mb-3">
+                    <label for="nama_pelanggan" class="form-label">Nama Pelanggan</label>
+                    <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="jam_keberangkatan" class="form-label">Jam Keberangkatan</label>
+                    <input type="text" class="form-control" id="jam_keberangkatan" name="jam_keberangkatan">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="tujuan_keberangkatan" class="form-label">Tujuan Keberangkatan</label>
+                    <input type="text" class="form-control" id="tujuan_keberangkatan" name="tujuan_keberangkatan">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="jumlah_tiket" class="form-label">Jumlah Tiket</label>
+                    <input type="number" class="form-control" id="jumlah_tiket" name="jumlah_tiket">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div class="row col-md-12 mt-5">
+            <h3 class="col-md-4 mb-3">Nama Pelanggan :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilNamaPelanggan"></h3>
+
+            <h3 class="col-md-4 mb-3">Email :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilEmail"></h3>
+
+            <h3 class="col-md-4 mb-3">Jam Keberangkatan :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilJam"></h3>
+
+            <h3 class="col-md-4 mb-3">Tujuan Keberangkatan :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilTujuan"></h3>
+
+            <h3 class="col-md-4 mb-3">Jumlah Tiket :</h3>
+            <h3 class="col-md-6 mb-3" id="hasilTiket"></h3>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function validateForm(event) {
+            var namaPelanggan = document.getElementById('nama_pelanggan').value;
+            if (namaPelanggan.length === 0 || namaPelanggan.length > 30) {
+                alert('Nama Pelanggan harus diisi dan maksimum 30 karakter');
+                return false;
+            }
+
+            var email = document.getElementById('email').value;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Format Email tidak valid');
+                return false;
+            }
+
+            var jamKeberangkatan = document.getElementById('jam_keberangkatan').value;
+            var jamRegex = /^(?:[01]\d|2[0-3]):(?:[0-5]\d)$/;
+            if (!jamRegex.test(jamKeberangkatan)) {
+                alert('Format Jam Keberangkatan tidak valid. Gunakan format jam antara 00:00 dan 23:59');
+                return false;
+            }
+
+            var tujuanKeberangkatan = document.getElementById('tujuan_keberangkatan').value;
+            if (tujuanKeberangkatan.length === 0) {
+                alert('Tujuan Keberangkatan harus diisi');
+                return false;
+            }
+
+            var jumlahTiket = document.getElementById('jumlah_tiket').value;
+            if (jumlahTiket < 1 || jumlahTiket > 10) {
+                alert('Jumlah Tiket harus di antara 1 dan 10');
+                return false;
+            }
+
+            document.getElementById('hasilNamaPelanggan').innerText = namaPelanggan;
+            document.getElementById('hasilEmail').innerText = email;
+            document.getElementById('hasilJam').innerText = jamKeberangkatan;
+            document.getElementById('hasilTujuan').innerText = tujuanKeberangkatan;
+            document.getElementById('hasilTiket').innerText = jumlahTiket;
+            return false;
+        }
+    </script>
+</body>
+
+</html>
